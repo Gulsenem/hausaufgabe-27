@@ -6,8 +6,8 @@
           Meine Webseite
         </div>
         <div id="nav">
-          <router-link to="/" @click="addAktivClass"  :class="{'aktiv': isAddClass}" >To-Do's</router-link> 
-          <router-link to="/Einkaufsliste" @click="aktiv(einkauf)" >Einkaufsliste</router-link>
+          <router-link to="/" @click="addAktivClass(todo)"  >To-Do's</router-link> 
+          <router-link to="/Einkaufsliste" @click="addAktivClass(einkauf)" >Einkaufsliste</router-link>
         </div>
 
       </div>
@@ -60,9 +60,9 @@ header
   text-decoration: none;
   font-size: 1.2em;
   margin-left: 20px;
-  padding: 5px 0;
+  padding: 5px;
 }
-.aktiv
+#nav a.router-link-exact-active
 {
   border-bottom: 3px solid #009ee3;
 }
@@ -73,24 +73,20 @@ header
   font-size: 2.5em;
 }
 
+  h1
+  {
+    margin:0;
+    padding-top: 50px;
+  }
+  h1::after
+  {
+    content: "";
+    width: 150px;
+    height: 4px;
+    margin-top: 10px;
+    background-color: #009ee3;
+    display: block;
+  }
+
 </style>
 
-<script>
-export default {
-  
-  data: function()
-  {
-    return{
-      isAddClass: true,
-    }
-  },
-
-  methods:
-  {
-    addAktivClass()
-    {
-      this.isAddClass=false;
-    }
-  }
-}
-</script>
