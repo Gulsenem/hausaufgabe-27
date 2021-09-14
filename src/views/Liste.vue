@@ -1,24 +1,25 @@
 <template>
     <div>
         <div class="container">
-        <input id= "input" type="text" placeholder="Eintrag eingeben"  v-model="in_eintrag" >
-        <button @click="add">Hinzufügen</button>
-        <hr>
-        <div class="eintragliste">
-          <ul>
-            <li v-for="(l, i) in liste" :key='i' @click="löschen(i)">  
-              
-              {{l.name}}
-            </li>
+            <input id= "input" type="text" placeholder="Eintrag eingeben"  v-model="in_eintrag" >
+            <button @click="add()">Hinzufügen</button>
+            <hr>
+            <div class="eintragliste">
+            <ul>
+                <li v-for="(l, i) in liste" :key='i' @click="löschen(i)">  
+                    {{l.name}}
+                </li>
 
-          </ul>
-        </div>
+            </ul>
+            </div>
 
       </div>
     </div>
 </template>
 
 <script>
+
+let listeGlobal= []; 
 
 export default {
   
@@ -30,14 +31,16 @@ export default {
     return{
       in_eintrag: '',
       eintrag: '',
-      liste: [],
+      liste: listeGlobal,
     }
   },
 
   methods:
   {
+      
     add()
     {
+
       if(this.in_eintrag=='')
       {
         document.getElementById('input').style.borderColor = 'red';
@@ -47,16 +50,18 @@ export default {
       {
         document.getElementById('input').placeholder = 'Eintrag  eingeben';
         document.getElementById('input').style.borderColor = 'black';
-        this.liste.push({name: this.in_eintrag});
-        this.in_eintrag= '';        
+        
+        listeGlobal.push({name: this.in_eintrag});
+        this.in_eintrag= '';  
+
       }
+        
+    }
 
-    },
-
-    löschen(index)
+   /* löschen(index)
     {
       this.liste.splice(index, 1);
-    },
+    },*/
 
   
   }

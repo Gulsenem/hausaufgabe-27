@@ -6,8 +6,8 @@
           Meine Webseite
         </div>
         <div id="nav">
-          <router-link to="/" @click="addAktivClass(todo)"  >To-Do's</router-link> 
-          <router-link to="/Einkaufsliste" @click="addAktivClass(einkauf)" >Einkaufsliste</router-link>
+          <router-link to="/" >To-Do's</router-link> 
+          <router-link to="/Einkaufsliste" >Einkaufsliste</router-link>
         </div>
 
       </div>
