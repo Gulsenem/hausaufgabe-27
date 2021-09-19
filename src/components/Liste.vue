@@ -1,67 +1,73 @@
 <template>
     <div>
         <div class="container">
-            <input id= "input" type="text" placeholder="Eintrag eingeben"  v-model="in_eintrag" >
-            <button @click="add()">Hinzufügen</button>
+            
+          <input  type="text" :placeholder="placeholder"  v-model="in_eintrag">
+          <button  @click="add()" > 
+              {{btn}} 
+          </button>
             <hr>
-            <div class="eintragliste">
-            <ul>
-                <li v-for="(l, i) in liste" :key='i' @click="löschen(i)">  
-                    {{l.name}}
-                </li>
+          <div class="eintragliste">
+          <ul>
+              <li v-for="(l, i) in liste" :key='i'  
 
-            </ul>
-            </div>
+                  :class="{active: zeigen === i}"
+                  @mouseover="zeigen = i"
+                  @mouseleave="zeigen = false"> 
 
+                  {{l.name}}
+
+                  <span v-if="zeigen ===i" @click="löschen(i)"> löschen</span>
+              </li>
+
+          </ul>
+          </div>
       </div>
     </div>
 </template>
 
 <script>
 
-let listeGlobal= []; 
 
 export default {
-  
-  components: {
-   
-  },
 
   data: function(){
     return{
       in_eintrag: '',
-      eintrag: '',
-      liste: listeGlobal,
+      placeholder: "Eintrag eingeben",
+      zeigen: true,
+      btn: "Hinzufügen",
+      liste: [],
     }
   },
 
   methods:
   {
-      
+
     add()
     {
 
       if(this.in_eintrag=='')
       {
-        document.getElementById('input').style.borderColor = 'red';
-        document.getElementById('input').placeholder = 'Bitte etwas eingeben';
+        this.placeholder ="Bitte geben sie etwas"
       }
       else
       {
-        document.getElementById('input').placeholder = 'Eintrag  eingeben';
-        document.getElementById('input').style.borderColor = 'black';
+        this.placeholder ="Eintrag eingeben";
         
-        listeGlobal.push({name: this.in_eintrag});
+        
+        this.liste.push({name: this.in_eintrag});
         this.in_eintrag= '';  
-
+        
       }
         
-    }
+  },
 
-   /* löschen(index)
+
+   löschen(index)
     {
       this.liste.splice(index, 1);
-    },*/
+    },
 
   
   }
@@ -71,6 +77,7 @@ export default {
 
 <style >
 
+
   .container
   {
     height: 500px;
@@ -79,7 +86,6 @@ export default {
     padding: 40px 70px;
     border-radius: 8px;
     box-shadow: 2px 0px 17px -1px rgba(1,1,49,0.43);
-    -webkit-box-shadow: 2px 0px 17px -1px rgba(1,1,49,0.43);
 
   }
 
@@ -107,15 +113,13 @@ export default {
   {
     font-weight: bold;
     cursor:pointer;
+    padding: 4px 0;
   }
-
-    ul li:hover::after
-    {
-    content: 'löschen';
+  ul li span
+  {
     color:red;
-    margin-left: 20px;
-
-    }
+    margin-left: 15px;
+  }                                            
     .eintragliste
     {
     height: 350px;

@@ -9,7 +9,7 @@
 
 <script>
 
-import Liste from './Liste.vue'
+import Liste from '../components/Liste.vue'
 export default {
   components:
   {
